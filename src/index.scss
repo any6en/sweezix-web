@@ -1,0 +1,233 @@
+@import '~bootstrap/scss/bootstrap';
+@import '../node_modules/noty/lib/noty.css';
+@import '../node_modules/noty/lib/themes/metroui.css';
+@import '../node_modules/noty/src/themes/bootstrap-v4.scss';
+
+html {
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  height: 100%;
+  min-width: 320px;
+  font-weight: 400;
+  font-size: 14px;
+  //background-color: $bg-primary;
+  font-family: 'Roboto', sans-serif;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+#root {
+  height: 100%;
+}
+
+.form-select {
+  font-size: 14px;
+}
+
+img,
+svg {
+  display: block;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+fieldset {
+  margin: 0;
+}
+
+iframe {
+  border: none;
+}
+
+ol {
+  margin: 0 !important;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number'],
+input[type='number']:hover,
+input[type='number']:focus {
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+.visually-hidden {
+  position: fixed;
+  transform: scale(0);
+}
+
+.navbar {
+  background-color: transparent;
+}
+
+.tableCol {
+  width: 40px;
+}
+
+.dropdown-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-link {
+  padding-left: 0;
+}
+
+.subTable {
+  max-height: 60vh;
+}
+
+.Mui-TableHeadCell-Content-Wrapper {
+  white-space: nowrap !important;
+}
+
+// Убираем лишние отступы у чекбоксов
+.MuiCheckbox-root {
+  padding: 0 !important;
+}
+
+.matrixCell {
+  cursor: default;
+}
+
+// Стили для контекстного меню
+.contextContainer {
+  z-index: 1;
+  width: 100%;
+}
+
+.rightClick {
+  z-index: 12;
+  position: fixed;
+  background: #fff;
+  font-size: 1rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  min-width: 310px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px,
+    rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;
+}
+
+.menuElement {
+  color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
+  padding: 6px 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+
+// Чтобы при открытии модалок, экран затемнялся (не зависимо от того, сколько модалок открыто)
+.modal-backdrop {
+  z-index: 1055 !important;
+}
+
+// Убираем лишний padding-right в фильтрах у матриц
+th div .MuiInput-input {
+  padding-right: 0 !important;
+}
+
+.sendFormAddDataButton {
+  height: 37px;
+  width: 110px;
+}
+
+.select {
+  font-size: 16px;
+}
+
+.header {
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  transition: height 0.3s ease; // Плавное изменение высоты
+  width: 100%; // Занимает всю ширину
+  padding-left: 10%;
+  padding-right: 10%;
+  z-index: 1001;
+}
+
+.header-fixed {
+  height: 60px; // Уменьшенная высота при прокрутке
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%; // Занимает всю ширину
+  padding-left: 10%;
+  padding-right: 10%;
+  z-index: 1001;
+}
+
+.rounded-border {
+  border: 2px solid #000; // Настройте цвет и ширину по своему усмотрению
+  border-radius: 0 0 10px 10px; // Полукруглые углы только снизу
+  background-color: #fff; // Фон, если требуется
+  width: 80%; // Занимает всю ширину
+}
+
+.logo {
+  max-width: 200px;
+  max-height: 60px;
+  transition: all 0.3s ease;
+}
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff; /* Цвет фона панели */
+  border-top: 1px solid #ddd; /* Линия сверху */
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  z-index: 999; /* Обеспечьте, чтобы панель была поверх всего */
+}
+
+.bottom-nav .bottom-nav-link {
+  text-align: center;
+  color: #333; /* Цвет иконок */
+  font-size: 24px; /* Размер иконок */
+}
+
+.bottom-nav .bottom-nav-link:hover {
+  color: #007bff; /* Цвет при наведении */
+}
+
+.navbar .nav-link {
+  padding: 0.5rem 1rem; /* Настройте вертикальные и горизонтальные отступы */
+  margin: 0; /* Уберите дополнительные отступы, если есть */
+}
+
+/* Изменение расстояния между элементами в навбаре */
+.me-auto .nav-link {
+  margin: 0 5px;
+}

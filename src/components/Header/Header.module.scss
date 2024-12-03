@@ -1,0 +1,29 @@
+.header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  transition: height 0.3s ease; // Плавное изменение высоты
+  width: 80%; // Занимает всю ширину
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.header.fixed {
+  height: 60px; // Уменьшенная высота при прокрутке
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.roundedBorder {
+  border: 2px solid #000; // Настройте цвет и ширину по своему усмотрению
+  border-radius: 0 0 10px 10px; // Полукруглые углы только снизу
+  background-color: #fff; // Фон, если требуется
+  width: 80%; // Занимает всю ширину
+}
+
+.logo {
+  max-width: 200px;
+  max-height: 60px;
+  transition: all 0.3s ease;
+}
