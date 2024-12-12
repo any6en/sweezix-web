@@ -50,8 +50,8 @@ const ModalBuyDonate: FC = () => {
     setPreload(true);
 
     window.location.href =
-      `https://anypay.io/merchant?merchant_id=15705&pay_id=2281337&amount=${data.price}&currency=RUB&sign=` +
-      generateMD5Signature('RUB', data.price, 'secret_2281337', 15705, 2281337);
+      `https://anypay.io/merchant?merchant_id=15705&pay_id=2281337&amount=${selectedData.price}&currency=RUB&sign=` +
+      generateMD5Signature('RUB', selectedData.price, 'secret_2281337', 15705, 2281337);
   };
 
   // Обработчик закрытия формы
@@ -130,7 +130,7 @@ const ModalBuyDonate: FC = () => {
             <Button
               variant="primary"
               onClick={handleClick}
-              disabled={isPreload || data?.nickname}
+              disabled={isPreload || !data || !data.hasOwnProperty('nickname')}
               className="px-0 sendFormAddDataButton"
             >
               <div className="d-flex align-items-center justify-content-center">
