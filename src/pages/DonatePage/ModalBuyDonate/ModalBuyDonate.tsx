@@ -9,14 +9,12 @@ import CryptoJS from 'crypto-js';
 const ModalBuyDonate: FC = () => {
   // Флаг, открыта ли форма
   const show = useAppSelector((state) => state.userReducer.modalBuyDonate);
+
   const selectedData = useAppSelector((state) => state.userReducer.selectedRowBuyDonate);
   const [data, setData] = useState<any>(undefined);
 
   // Состояния для хранения состояний загрузки/отправки данных
-  const [isPreload, setIsPreload] = useState<boolean>(false);
-  const [isDataSend, setIsDataSend] = useState<boolean>(false);
-
-  const navigate = useNavigate();
+  const [isPreload, setPreload] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
   const { setShowModalBuyDonate } = userSlice.actions;
@@ -27,7 +25,6 @@ const ModalBuyDonate: FC = () => {
   useEffect(() => {
     if (show) {
       controller.current = new AbortController();
-      setData({ ...selectedData });
     }
   }, [show, selectedData]);
 
@@ -50,26 +47,20 @@ const ModalBuyDonate: FC = () => {
 
   // Обработчик отправки данных
   const handleClick = async (e: any) => {
-    e.preventDefault();
-    setIsPreload(true);
-    setIsDataSend(true);
+    setPreload(true);
 
     window.location.href =
-      'https://anypay.io/merchant?merchant_id=15705&pay_id=2281337&amount=1&currency=RUB&sign=' +
+      `https://anypay.io/merchant?merchant_id=15705&pay_id=2281337&amount=${data.price}&currency=RUB&sign=` +
       generateMD5Signature('RUB', data.price, 'secret_2281337', 15705, 2281337);
-  };
-
-  // Очистка формы
-  const cleanForm = () => {
-    setData({});
-    setIsPreload(false);
   };
 
   // Обработчик закрытия формы
   const handleClose = () => {
     dispatch(setShowModalBuyDonate(false));
+    setData({});
+    setPreload(false);
+
     controller.current.abort();
-    cleanForm();
   };
 
   return (
@@ -91,20 +82,20 @@ const ModalBuyDonate: FC = () => {
                   <Card className="d-flex justify-content-center h-100">
                     <Card.Body>
                       <Card.Title className="d-flex justify-content-center">
-                        {data?.name}
+                        {selectedData?.name}
                       </Card.Title>
                       <Card.Text className="d-flex justify-content-center">
                         <img
-                          src={data?.imgSrc}
+                          src={selectedData?.imgSrc}
                           alt="Уэ-э-э"
                           style={{ maxWidth: '75%', height: 'auto' }}
                         />
                       </Card.Text>
 
-                      <Card.Text>{data?.description}</Card.Text>
+                      <Card.Text>{selectedData?.description}</Card.Text>
 
                       <Card.Text className="text-center" style={{ fontSize: '1.875rem' }}>
-                        {data?.price}₽
+                        {selectedData?.price}₽
                       </Card.Text>
                     </Card.Body>
                   </Card>
@@ -139,7 +130,7 @@ const ModalBuyDonate: FC = () => {
             <Button
               variant="primary"
               onClick={handleClick}
-              disabled={isDataSend}
+              disabled={isPreload}
               className="px-0 sendFormAddDataButton"
             >
               <div className="d-flex align-items-center justify-content-center">
