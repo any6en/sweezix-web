@@ -110,7 +110,7 @@ const ModalBuyDonate: FC = () => {
                           onChange={(e: any) => {
                             setData({
                               ...data,
-                              nickname: e.target.value,
+                              nickname: e.target.value !== '' ? e.target.value : undefined,
                             });
                           }}
                         />
@@ -130,7 +130,7 @@ const ModalBuyDonate: FC = () => {
             <Button
               variant="primary"
               onClick={handleClick}
-              disabled={isPreload}
+              disabled={isPreload || data?.nickname}
               className="px-0 sendFormAddDataButton"
             >
               <div className="d-flex align-items-center justify-content-center">
