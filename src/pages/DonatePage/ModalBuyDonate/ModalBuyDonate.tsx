@@ -56,7 +56,7 @@ const ModalBuyDonate: FC = () => {
 
     window.location.href =
       'https://anypay.io/merchant?merchant_id=15705&pay_id=2281337&amount=1&currency=RUB&sign=' +
-      generateMD5Signature('RUB', 1, 'secret_2281337', 15705, 2281337);
+      generateMD5Signature('RUB', data.price, 'secret_2281337', 15705, 2281337);
   };
 
   // Очистка формы

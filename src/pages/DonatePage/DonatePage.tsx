@@ -33,7 +33,7 @@ const privileges = [
 
     imgSrc:
       'https://storage.easyx.ru/images/easydonate/products/s9sjZDFescDahaaKhw4AROGBd3xy5Hgl.png',
-    price: '199',
+    price: 199,
     priority: 1,
     link: '/start/phone',
   },
@@ -65,7 +65,7 @@ const privileges = [
         <p>[!] Доплата, имея эту привилегию, НЕ является возможной.</p>
       </>
     ),
-    price: '399',
+    price: 399,
     imgSrc:
       'https://storage.easyx.ru/images/easydonate/products/r9I3YnS82CPEN8H0w3KRHv01IRxFrmzl.png',
     priority: 2,
@@ -102,7 +102,7 @@ const privileges = [
       </>
     ),
 
-    price: '699',
+    price: 699,
     imgSrc:
       'https://storage.easyx.ru/images/easydonate/products/LqPOMw6El23R7wm2U51UHVVFsPfMMkdX.png',
 
@@ -142,7 +142,7 @@ const privileges = [
         <p>[!] Доплата, имея эту привилегию, НЕ является возможной.</p>
       </>
     ),
-    price: '999',
+    price: 999,
     imgSrc:
       'https://storage.easyx.ru/images/easydonate/products/HK7e1tw9Ykuutb4akey8k0xpT319Dt8s.png',
     priority: 4,
@@ -189,7 +189,7 @@ const privileges = [
       </>
     ),
 
-    price: '499',
+    price: 499,
     imgSrc:
       'https://storage.easyx.ru/images/easydonate/products/GqY4yCobjRn3prpxIoegvOIFMxT4Rxyy.png',
     priority: 5,
