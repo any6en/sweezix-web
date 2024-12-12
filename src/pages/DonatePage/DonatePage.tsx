@@ -1,10 +1,13 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Col, Container, Row, Card, Badge } from 'react-bootstrap';
 import { userSlice } from '../../store/reducers/UserSlice/UserSlice';
 import { useAppDispatch } from '../../hooks/redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { errorHandler } from '../../utils/alarmHandler';
 
-const privileges = [
+const ranks = [
   {
+    id: '1',
     name: (
       <Badge bg="success">
         <h1>VIP</h1>
@@ -39,6 +42,7 @@ const privileges = [
   },
 
   {
+    id: '2',
     name: (
       <Badge bg="secondary">
         <h1>VIP+</h1>
@@ -73,6 +77,7 @@ const privileges = [
   },
 
   {
+    id: '3',
     name: (
       <Badge bg="info">
         <h1>MVP</h1>
@@ -110,6 +115,7 @@ const privileges = [
     link: '/start/console',
   },
   {
+    id: '4',
     name: (
       <Badge bg="warning">
         <h1>MVP+</h1>
@@ -149,6 +155,7 @@ const privileges = [
     link: '/start/console',
   },
   {
+    id: '5',
     name: (
       <Badge bg="primary">
         <h1>MVP++</h1>
@@ -198,12 +205,29 @@ const privileges = [
 ];
 
 // Сортировка привилегий по приоритету
-privileges.sort((a, b) => a.priority - b.priority);
+ranks.sort((a, b) => a.priority - b.priority);
 
 const DonatePage: FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const { setShowModalBuyDonate, setSelectedBuyDonate } = userSlice.actions;
+
+  const { rank_idParam } = useParams();
+
+  if (rank_idParam) {
+    let filteredRanks = ranks;
+
+    filteredRanks = ranks.filter((rank) => rank.id === rank_idParam);
+
+    if (filteredRanks.length > 0) {
+      dispatch(setSelectedBuyDonate(filteredRanks[0]));
+      dispatch(setShowModalBuyDonate(true));
+    } else {
+      navigate('/donate');
+      errorHandler('Ранга с Id=' + rank_idParam + 'не существует');
+    }
+  }
 
   return (
     <>
@@ -216,29 +240,28 @@ const DonatePage: FC = () => {
             Выберите привилегию и нажмите на нее
           </p>
           <Row className="justify-content-center mt-4">
-            {privileges.map((privilege, index) => (
+            {ranks.map((rank, index) => (
               <Col key={index} xs={12} sm={6} md={4} className="mb-4">
                 <Card
                   className="d-flex justify-content-center h-100"
                   onClick={() => {
-                    dispatch(setSelectedBuyDonate(privilege));
+                    navigate('/donate/rank/' + rank.id);
+                    dispatch(setSelectedBuyDonate(rank));
                     dispatch(setShowModalBuyDonate(true));
                   }}
                 >
                   <Card.Body>
-                    <Card.Title className="d-flex justify-content-center">
-                      {privilege.name}
-                    </Card.Title>
+                    <Card.Title className="d-flex justify-content-center">{rank.name}</Card.Title>
                     <Card.Text className="d-flex justify-content-center">
                       <img
-                        src={privilege.imgSrc}
+                        src={rank.imgSrc}
                         alt="Уэ-э-э"
                         style={{ maxWidth: '75%', height: 'auto' }}
                       />
                     </Card.Text>
 
                     <Card.Text className="text-center" style={{ fontSize: '1.875rem' }}>
-                      {privilege.price}₽
+                      {rank.price}₽
                     </Card.Text>
                   </Card.Body>
                 </Card>

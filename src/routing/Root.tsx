@@ -22,6 +22,8 @@ function Root() {
         <Route path="/start" element={<StartPage />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/donate" element={<DonatePage />} />
+        <Route path="/donate/rank/:rank_idParam?" element={<DonatePage />} />
+
         <Route path="/start/phone" element={<StartPhonePage />} />
         <Route path="/start/pc" element={<StartPCPage />} />
         <Route path="/start/console" element={<StartConsolePage />} />

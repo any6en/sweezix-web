@@ -19,6 +19,8 @@ const ModalBuyDonate: FC = () => {
   const dispatch = useAppDispatch();
   const { setShowModalBuyDonate } = userSlice.actions;
 
+  const navigate = useNavigate();
+
   const controller = useRef(new AbortController());
 
   // При открытии формы
@@ -57,6 +59,8 @@ const ModalBuyDonate: FC = () => {
   // Обработчик закрытия формы
   const handleClose = () => {
     dispatch(setShowModalBuyDonate(false));
+
+    navigate('/donate');
     setData({});
     setPreload(false);
 
