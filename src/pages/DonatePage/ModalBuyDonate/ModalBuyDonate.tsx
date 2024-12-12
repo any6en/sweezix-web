@@ -26,7 +26,7 @@ const ModalBuyDonate: FC = () => {
     if (show) {
       controller.current = new AbortController();
     }
-  }, [show, selectedData]);
+  }, [show]);
 
   // Функция для генерации MD5-подписи
   function generateMD5Signature(
@@ -108,10 +108,8 @@ const ModalBuyDonate: FC = () => {
                         <Form.Control
                           type="text"
                           onChange={(e: any) => {
-                            setData({
-                              ...data,
-                              nickname: e.target.value !== '' ? e.target.value : undefined,
-                            });
+                            const value = e.target.value;
+                            setData(value ? { ...data, nickname: value } : undefined);
                           }}
                         />
                       </Col>
